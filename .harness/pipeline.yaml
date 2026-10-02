@@ -19,10 +19,18 @@ pipeline:
                   spec:
                     image: mcr.microsoft.com/playwright:v1.63.0-noble
                     shell: Bash
+                    envVariables:
+                      HEADED: "true"
+                      EMAIL_SEND: "true"
+                      SMTP_HOST: smtp.gmail.com
+                      SMTP_PORT: "587"
+                      SMTP_USER: <+secrets.getValue("opencart_smtp_user")>
+                      SMTP_PASSWORD: <+secrets.getValue("opencart_smtp_password")>
+                      EMAIL_TO: <+secrets.getValue("opencart_report_email_to")>
                     command: |-
                       npm ci
                       npx bddgen test
-                      BROWSER=chromium npx playwright test --project=chromium
+                      xvfb-run -a env BROWSER=chromium npx playwright test --project=chromium
                     reports:
                       type: JUnit
                       spec:
