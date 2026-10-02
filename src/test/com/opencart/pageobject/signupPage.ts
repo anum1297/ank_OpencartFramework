@@ -31,6 +31,14 @@ export class SignupPage {
     await this.page.locator(`//input[@type='submit']`).click();
   }
 
+  async verifyAccountCreatedText() {
+    return this.page.getByRole('heading', { name: 'Your Account Has Been Created!', exact: true });
+  }
+
+  async continueAfterRegistration() {
+    await this.page.getByRole('link', { name: 'Continue', exact: true }).click();
+  }
+
   async verifyErrorMessage() {
     return this.page.getByText('Warning: E-Mail Address is already registered!');
   }

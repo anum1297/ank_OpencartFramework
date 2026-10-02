@@ -19,8 +19,6 @@ pipeline:
                   spec:
                     image: mcr.microsoft.com/playwright:v1.63.0-noble
                     shell: Bash
-                    envVariables:
-                      DUPLICATE_SIGNUP_EMAIL: <+secrets.getValue("opencart_duplicate_signup_email")>
                     command: |-
                       npm ci
                       npx bddgen test
