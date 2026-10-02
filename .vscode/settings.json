@@ -1,0 +1,7 @@
+{
+  "cucumberautocomplete.steps": [
+    "src/test/com/opencart/steps/*.ts"
+  ],
+  "cucumberautocomplete.syncfeatures":
+    "src/test/com/opencart/features/*.feature"
+}

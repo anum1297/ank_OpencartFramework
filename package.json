@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "@faker-js/faker": "^10.6.0",
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.6.3",
+    "@types/nodemailer": "^8.0.2",
+    "monocart-reporter": "^2.14.0",
+    "nodemailer": "^10.0.13",
+    "playwright-bdd": "^9.2.1"
+  }
+}

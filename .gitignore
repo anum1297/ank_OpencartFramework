@@ -1,0 +1,15 @@
+node_modules/
+.env
+.env.*
+!.env.example
+
+.features-gen/
+test-results/
+playwright-report/
+monocart-report/
+extent-report/
+
+coverage/
+*.log
+.DS_Store
+Thumbs.db
