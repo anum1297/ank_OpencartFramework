@@ -7,8 +7,8 @@ export class LoginPage {
     }
 
     async enterLoginDetails(credentials?: { email: string; password: string }) {
-        await this.page.locator(`//span[contains(text(),'My Account')]`).click();
-        await this.page.locator(`//a[contains(text(),'Login')]`).click();
+        await this.page.locator('a.dropdown-toggle').filter({ hasText: 'My Account' }).click();
+        await this.page.getByRole('link', { name: 'Login', exact: true }).click();
         const loginCredentials = credentials ?? await getSignupCredentials();
         await this.page.getByPlaceholder(`E-Mail Address`).fill(loginCredentials.email);
         await this.page.locator(`#input-password`).fill(loginCredentials.password);

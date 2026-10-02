@@ -6,8 +6,8 @@ export class AddressPage {
     }
 
     async navigateToAddressPage() {
-        await this.page.locator(`//span[contains(text(),'My Account')]`).click();
-        await this.page.locator(`//a[contains(text(),'Address Book')]`).click();
+        await this.page.locator('a.dropdown-toggle').filter({ hasText: 'My Account' }).click();
+        await this.page.getByRole('link', { name: 'Address Book', exact: true }).click();
     }
 
     async enterAddressDetails(details: {

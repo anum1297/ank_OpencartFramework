@@ -5,8 +5,8 @@ export class SignupPage {
   constructor(private readonly page: Page) { }
 
   async openRegistration() {
-    await this.page.locator(`//span[contains(text(),'My Account')]`).click();
-    await this.page.locator(`//a[contains(text(),'Register')]`).click();
+    await this.page.locator('a.dropdown-toggle').filter({ hasText: 'My Account' }).click();
+    await this.page.getByRole('link', { name: 'Register', exact: true }).click();
   }
 
   async enterRegistrationDetails(details: {
