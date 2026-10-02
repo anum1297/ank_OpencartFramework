@@ -50,16 +50,12 @@ The default site URL and product are in `qaConfig.properties`. Optional environm
 
 Keep credentials and real customer data in environment variables, never in committed files. The duplicate-signup scenario creates a fresh test customer, logs out, then attempts to register again with that same generated email, so it does not need a pre-existing account or Harness secret.
 
-Set `HEADED=true` to run Playwright browsers in headed mode. On a headless Linux CI worker, provide a virtual display, for example with `xvfb-run -a`. Harness Cloud has no interactive desktop to watch live; use the recorded Playwright video, screenshot, and trace attachments in the reports to inspect the run.
-
 ## Reports and artifacts
 
 Playwright HTML, Monocart, and the custom Extent-style report are configured in `playwright.config.ts`. Test results, traces, videos, generated reports, and local dependencies are excluded from Git.
 
 ## Harness CI
 
-The Harness pipeline and its generated input sets are in `.harness/`. It generates Playwright tests from the Gherkin features with `npx bddgen test`, then runs them headed under Xvfb on Harness Cloud with Chromium and publishes JUnit results. A test summary is sent by email, with the custom HTML report attached, after each run.
-
-For email, create three Harness Secret Text entries in the `Opencart` project with identifiers `opencart_smtp_user`, `opencart_smtp_password`, and `opencart_report_email_to`. Set them to the Gmail sender address, a Gmail App Password (not the account password), and the report recipient address. The pipeline passes secrets through Harness expressions; do not commit or paste their values into source files or chat. To use another SMTP provider, update `SMTP_HOST` and `SMTP_PORT` in the pipeline and its security requirements.
+The Harness pipeline and its generated input sets are in `.harness/`. It generates Playwright tests from the Gherkin features with `npx bddgen test`, then runs them on Harness Cloud with Chromium and publishes JUnit results.
 
 The onboarding flow may enable push and pull-request triggers. This end-to-end suite changes data on the public demo store, and checkout places an order. Keep automatic triggers disabled until you have confirmed repeated runs are appropriate for that test site.

@@ -50,7 +50,6 @@ export default defineConfig({
         ['./src/main/com/opencart/helpers/extentreportmanager.ts'],
     ],
     use: {
-        headless: process.env.HEADED?.trim().toLowerCase() !== 'true',
         viewport: null,
         screenshot: 'on',
         video: 'on',
