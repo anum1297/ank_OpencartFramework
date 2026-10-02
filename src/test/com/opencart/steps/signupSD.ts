@@ -35,7 +35,6 @@ When('user click on signup button', async ({signupPage}) => {
     lastName: signupDetails.lastName,
     email: signupDetails.email,
     telephone: signupDetails.telephone,
-    password: signupDetails.password,
   };
   await test.step(`Created customer account: ${JSON.stringify(customerDetails)}`, async () => {});
 });

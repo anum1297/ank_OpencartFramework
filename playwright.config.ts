@@ -9,7 +9,9 @@ const browserOptions = {
     edge: { browserName: 'chromium', channel: 'msedge', launchOptions: { args: ['--start-maximized'] as string[] } },
 } as const;
 
-const browserConfig = new Utilities().getProperty('browser')?.trim().toLowerCase() || 'chromium';
+const browserConfig = process.env.BROWSER?.trim().toLowerCase()
+    || new Utilities().getProperty('browser')?.trim().toLowerCase()
+    || 'chromium';
 const configuredBrowsers = browserConfig === 'all'
     ? ['chrome', 'firefox', 'edge']
     : browserConfig.split(',').map((browser) => browser.trim());
@@ -40,6 +42,7 @@ export default defineConfig({
     projects: browserProjects,
     reporter: [
         ['html', { outputFolder: 'playwright-report', open: 'never' }],
+        ['junit', { outputFile: 'test-results/junit.xml' }],
         ['monocart-reporter', {
             name: 'OpenCart E2E Report',
             outputFile: './monocart-report/index.html',

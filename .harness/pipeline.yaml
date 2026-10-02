@@ -1,0 +1,41 @@
+pipeline:
+  name: OpenCart Playwright CI
+  identifier: OpenCart_Playwright_CI
+  projectIdentifier: YOUR_PROJECT_ID
+  orgIdentifier: YOUR_ORG_ID
+  properties:
+    ci:
+      codebase:
+        connectorRef: YOUR_GITHUB_CONNECTOR
+        repoName: anum1297/ank_OpencartFramework
+        build: <+input>
+  stages:
+    - stage:
+        name: Playwright E2E
+        identifier: Playwright_E2E
+        type: CI
+        spec:
+          cloneCodebase: true
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Install and run Playwright tests
+                  identifier: Install_and_run_Playwright_tests
+                  spec:
+                    image: mcr.microsoft.com/playwright:v1.63.0-noble
+                    shell: Bash
+                    command: |-
+                      npm ci
+                      BROWSER=chromium npx playwright test --project=chromium
+                    reports:
+                      type: JUnit
+                      spec:
+                        paths:
+                          - test-results/junit.xml
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
