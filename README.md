@@ -57,6 +57,6 @@ Playwright HTML, Monocart, and the custom Extent-style report are configured in 
 
 ## Harness CI
 
-A Harness CI pipeline is in `.harness/pipeline.yaml`. It generates Playwright tests from the Gherkin features with `npx bddgen test`, then runs them on Harness Cloud with Chromium and publishes JUnit results.
+The Harness pipeline and its generated input sets are in `.harness/`. Before running it, create a Harness Secret Text with identifier `opencart_duplicate_signup_email`, containing an email already registered on the demo store. The pipeline passes that secret to the duplicate-signup test as `DUPLICATE_SIGNUP_EMAIL`. It generates Playwright tests from the Gherkin features with `npx bddgen test`, then runs them on Harness Cloud with Chromium and publishes JUnit results.
 
-In the Harness UI, create a pipeline in your project, choose the YAML editor or import the remote pipeline from this repository, then save it and run it manually on your branch. Start by running it manually. The end-to-end suite exercises a public demo store and includes customer registration and checkout/order placement; do not enable automatic pull-request or push triggers until you have confirmed the test site is appropriate for repeated runs.
+The onboarding flow may enable push and pull-request triggers. This end-to-end suite changes data on the public demo store, and checkout places an order. Keep automatic triggers disabled until you have confirmed repeated runs are appropriate for that test site.

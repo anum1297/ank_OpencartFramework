@@ -59,7 +59,12 @@ export class ShoppingcartPage {
     }
 
     async navigateToShoppingcart() {
-        await this.page.locator(`//span[text()='Shopping Cart']`).click();
+        const cartUrl = await this.page.locator('a[title="Shopping Cart"]').getAttribute('href');
+        if (!cartUrl) {
+            throw new Error('Shopping Cart link is missing its destination URL.');
+        }
+
+        await this.page.goto(cartUrl);
     }
 
     async verifyLaptopProductText(productName: string) {
