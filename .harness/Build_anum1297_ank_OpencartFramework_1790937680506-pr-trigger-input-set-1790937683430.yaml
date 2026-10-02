@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_anum1297_ank_OpencartFramework_1790937680506-pr-trigger-input-set
+  identifier: Build_anum1297_ank_OpencartFramework_1790937680506prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: Opencart
+  pipeline:
+    identifier: Build_anum1297_ank_OpencartFramework_1790937680506
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>

@@ -1,14 +1,8 @@
 pipeline:
-  name: OpenCart Playwright CI
-  identifier: OpenCart_Playwright_CI
-  projectIdentifier: YOUR_PROJECT_ID
-  orgIdentifier: YOUR_ORG_ID
-  properties:
-    ci:
-      codebase:
-        connectorRef: YOUR_GITHUB_CONNECTOR
-        repoName: anum1297/ank_OpencartFramework
-        build: <+input>
+  name: Build ank_OpencartFramework
+  identifier: Build_anum1297_ank_OpencartFramework_1790937680506
+  projectIdentifier: Opencart
+  orgIdentifier: default
   stages:
     - stage:
         name: Playwright E2E
@@ -39,3 +33,9 @@ pipeline:
           runtime:
             type: Cloud
             spec: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: account.Github_OAuth_1790937521871
+        repoName: anum1297/ank_OpencartFramework
+        build: <+input>
