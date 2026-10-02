@@ -22,6 +22,7 @@ End-to-end browser tests for the OpenCart demo site, written in TypeScript with 
 ```sh
 npm install
 npx playwright install
+npx bddgen test
 npx playwright test
 ```
 
@@ -31,6 +32,7 @@ Set `BROWSER` in the environment to override that file setting, for example `BRO
 List discovered scenarios without executing them:
 
 ```sh
+npx bddgen test
 npx playwright test --list
 ```
 
@@ -55,6 +57,6 @@ Playwright HTML, Monocart, and the custom Extent-style report are configured in 
 
 ## Harness CI
 
-A starter Harness CI pipeline is in `.harness/pipeline.yaml`. In Harness, connect the GitHub repository, create a CI pipeline from this YAML, and replace `YOUR_ORG_ID`, `YOUR_PROJECT_ID`, and `YOUR_GITHUB_CONNECTOR` with the identifiers from your Harness account. Select the branch to run when starting the pipeline. The pipeline uses Harness Cloud and the matching Playwright Docker image, and publishes JUnit results.
+A Harness CI pipeline is in `.harness/pipeline.yaml`. It generates Playwright tests from the Gherkin features with `npx bddgen test`, then runs them on Harness Cloud with Chromium and publishes JUnit results.
 
 In the Harness UI, create a pipeline in your project, choose the YAML editor or import the remote pipeline from this repository, then save it and run it manually on your branch. Start by running it manually. The end-to-end suite exercises a public demo store and includes customer registration and checkout/order placement; do not enable automatic pull-request or push triggers until you have confirmed the test site is appropriate for repeated runs.

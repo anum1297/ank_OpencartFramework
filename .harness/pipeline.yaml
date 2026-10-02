@@ -21,6 +21,7 @@ pipeline:
                     shell: Bash
                     command: |-
                       npm ci
+                      npx bddgen test
                       BROWSER=chromium npx playwright test --project=chromium
                     reports:
                       type: JUnit
