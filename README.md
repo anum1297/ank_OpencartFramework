@@ -32,10 +32,6 @@ This framework automates key customer workflows on the OpenCart demo site:
 
 Scenarios are maintained as Gherkin feature files. `playwright-bdd` generates Playwright tests from those features before execution.
 
-<!-- Add an OpenCart framework overview screenshot here. -->
-
-<!-- Add an example browser execution screenshot here. -->
-
 ---
 
 ## 🧰 Tech Stack
@@ -77,6 +73,10 @@ ank_OpencartFramework/
 ├── package.json
 └── README.md
 ```
+<img width="443" height="230" alt="image" src="https://github.com/user-attachments/assets/d76a6020-2814-41b7-93f3-744e0db00a07" />
+<img width="442" height="296" alt="image" src="https://github.com/user-attachments/assets/231c4083-792c-42c5-a9e8-771a300ce90c" />
+<img width="450" height="666" alt="image" src="https://github.com/user-attachments/assets/25457dfe-0424-4b4d-9611-ec6f81cab1e5" />
+<img width="464" height="216" alt="image" src="https://github.com/user-attachments/assets/0c32ab9e-38ea-4bbe-bc46-44a089ce6544" />
 
 ---
 
@@ -133,9 +133,9 @@ npx playwright test --list
 The Playwright configuration produces:
 
 - Playwright HTML report in `playwright-report/`
-- JUnit XML in `test-results/junit.xml`
 - Monocart HTML report in `monocart-report/index.html`
 - Custom Extent-style HTML report in `extent-report/index.html`
+- JUnit XML in `test-results/junit.xml`
 - Playwright screenshots, videos, and traces in `test-results/`
 
 Open the Playwright HTML report locally with:
@@ -146,9 +146,22 @@ npx playwright show-report
 
 Video and trace recording are enabled in `playwright.config.ts`. Harness currently collects the JUnit report; the video and trace files are generated in the CI workspace but are not configured as downloadable Harness artifacts.
 
-<!-- Add a test report screenshot here. -->
-
-<!-- Add an email report screenshot here. -->
+- Playwright HTML report
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/4ad7cb71-da08-4c4d-8d83-39df62717bc4" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/550618d7-4219-4203-b75d-c489874aee49" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/81aca23b-3e50-43dd-8e25-ddcd0aa79df1" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/7d3e086b-b639-4a9e-b160-0ce8fc726e30" />
+- Monocart HTML report
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/88c4a412-da41-4ae3-8565-1f8faa39eaa7" />
+- Custom Extent-style HTML report
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/2eebe482-8ca3-493b-8662-924c02465d2c" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c70807b4-acb6-4cbf-8431-ba323ab388cb" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f21cb044-30d9-4815-988e-28d529a11b2a" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a71e0663-6b63-4500-b3d0-05527be4a062" />
+- JUnit XML
+<img width="1212" height="963" alt="image" src="https://github.com/user-attachments/assets/ee2a5036-0ab5-42a3-b093-9a5afcb905e2" />
+- Playwright screenshots, videos, and traces
+<img width="561" height="204" alt="image" src="https://github.com/user-attachments/assets/e0abeddb-cb50-4d09-b664-940cc9e9d73d" />
 
 ---
 
@@ -208,6 +221,9 @@ EMAIL_TO: <+secrets.getValue("email_to")>
 ```
 
 After a successful pipeline run, check the Run step logs for `Report email sent to ...` and confirm the report email arrived with `index.html` attached.
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/346682a0-afe5-4d5d-aa91-9f0a055fcfc6" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a6c31b96-0dcf-4191-9f66-150701db7430" />
 
 ---
 
