@@ -147,20 +147,29 @@ npx playwright show-report
 Video and trace recording are enabled in `playwright.config.ts`. Harness currently collects the JUnit report; the video and trace files are generated in the CI workspace but are not configured as downloadable Harness artifacts.
 
 - Playwright HTML report
+
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/4ad7cb71-da08-4c4d-8d83-39df62717bc4" />
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/550618d7-4219-4203-b75d-c489874aee49" />
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/81aca23b-3e50-43dd-8e25-ddcd0aa79df1" />
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/7d3e086b-b639-4a9e-b160-0ce8fc726e30" />
+
 - Monocart HTML report
+
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/88c4a412-da41-4ae3-8565-1f8faa39eaa7" />
+
 - Custom Extent-style HTML report
+
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/2eebe482-8ca3-493b-8662-924c02465d2c" />
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c70807b4-acb6-4cbf-8431-ba323ab388cb" />
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f21cb044-30d9-4815-988e-28d529a11b2a" />
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a71e0663-6b63-4500-b3d0-05527be4a062" />
+
 - JUnit XML
+
 <img width="1212" height="963" alt="image" src="https://github.com/user-attachments/assets/ee2a5036-0ab5-42a3-b093-9a5afcb905e2" />
+
 - Playwright screenshots, videos, and traces
+
 <img width="561" height="204" alt="image" src="https://github.com/user-attachments/assets/e0abeddb-cb50-4d09-b664-940cc9e9d73d" />
 
 ---
