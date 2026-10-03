@@ -188,7 +188,7 @@ The Harness pipeline is defined in `.harness/pipeline.yaml`. It installs the loc
 Harness sets `PW_HEADLESS=true` and `BROWSER=chromium` for CI. This avoids requiring a visible display on the cloud runner. The pipeline also enables report email and reads its email credentials from Harness project secrets.
 
 The test suite uses the public OpenCart demo store and includes checkout workflows that place an order. Consider this before enabling frequent or automatic pipeline triggers.
-
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/44496ec5-03eb-4879-a8db-166cdc84dced" />
 <img width="1920" height="1080" alt="image-1791035435532" src="https://github.com/user-attachments/assets/ef1e3aab-04cd-4413-b387-ff54512be733" />
 <img width="1920" height="1080" alt="image-1791035452171" src="https://github.com/user-attachments/assets/508e8c57-7517-47fb-9744-e4e8bd34661f" />
 <img width="1920" height="1080" alt="image-1791035504854" src="https://github.com/user-attachments/assets/99f8d570-00d0-4f1f-ab83-a4b9f521d8a6" />
