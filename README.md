@@ -152,9 +152,13 @@ Video and trace recording are enabled in `playwright.config.ts`. Harness current
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/81aca23b-3e50-43dd-8e25-ddcd0aa79df1" />
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/7d3e086b-b639-4a9e-b160-0ce8fc726e30" />
 
+---
+
 - Monocart HTML report
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/88c4a412-da41-4ae3-8565-1f8faa39eaa7" />
+
+---
 
 - Custom Extent-style HTML report
 
@@ -163,9 +167,13 @@ Video and trace recording are enabled in `playwright.config.ts`. Harness current
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f21cb044-30d9-4815-988e-28d529a11b2a" />
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/a71e0663-6b63-4500-b3d0-05527be4a062" />
 
+---
+
 - JUnit XML
 
 <img width="1212" height="963" alt="image" src="https://github.com/user-attachments/assets/ee2a5036-0ab5-42a3-b093-9a5afcb905e2" />
+
+---
 
 - Playwright screenshots, videos, and traces
 
