@@ -73,10 +73,9 @@ ank_OpencartFramework/
 ├── package.json
 └── README.md
 ```
-<img width="443" height="230" alt="image" src="https://github.com/user-attachments/assets/d76a6020-2814-41b7-93f3-744e0db00a07" />
-<img width="442" height="296" alt="image" src="https://github.com/user-attachments/assets/231c4083-792c-42c5-a9e8-771a300ce90c" />
-<img width="450" height="666" alt="image" src="https://github.com/user-attachments/assets/25457dfe-0424-4b4d-9611-ec6f81cab1e5" />
-<img width="464" height="216" alt="image" src="https://github.com/user-attachments/assets/0c32ab9e-38ea-4bbe-bc46-44a089ce6544" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/330c1f9f-5be4-4298-9a93-86196ff9bb21" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c1c641c0-278f-4919-b5df-0306a979f8a5" />
+<img width="1919" height="571" alt="image" src="https://github.com/user-attachments/assets/77205bb1-259d-4626-b9fa-74aa52218021" />
 
 ---
 
