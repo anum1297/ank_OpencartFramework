@@ -38,15 +38,42 @@ npx playwright test --list
 
 ## Test configuration
 
-The default site URL and product are in `qaConfig.properties`. Optional environment variables:
+The default site URL, product, and non-secret SMTP settings are in `src/main/com/opencart/config/qaConfig.properties`. Email is disabled by default (`emailSend=false`). To enable local report emails, provide credentials through environment variables:
+
+```sh
+export EMAIL_SEND=true
+export SMTP_USER="your-sender@example.com"
+export SMTP_PASSWORD="your-smtp-app-password"
+export EMAIL_TO="recipient@example.com"
+npx bddgen test && npx playwright test
+```
+
+The message is sent after the custom Extent-style report is generated and includes that report as an attachment. Environment variables override the corresponding non-secret properties. Do not put `SMTP_PASSWORD`, `SMTP_USER`, or recipient addresses in tracked files.
 
 | Variable | Purpose |
 | --- | --- |
 | `INVALID_LOGIN_EMAIL` | Override the safe, invalid email used by the invalid-login scenario. |
 | `INVALID_LOGIN_PASSWORD` | Override the safe, invalid password used by the invalid-login scenario. |
-| `EMAIL_SEND` | Set to `true` to enable sending the execution report by email. |
-| `SMTP_USER`, `SMTP_PASSWORD`, `EMAIL_TO` | SMTP credentials and recipient, required when email reporting is enabled. |
-| `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `EMAIL_FROM` | Optional SMTP and sender configuration. |
+| `EMAIL_SEND` | Set to `true` to enable email; defaults to `false`. |
+| `SMTP_USER`, `SMTP_PASSWORD`, `EMAIL_TO` | SMTP account username, app password, and report recipient; required when enabled. |
+| `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE` | Optional SMTP host, port, and TLS setting; default values are in `qaConfig.properties`. |
+| `EMAIL_FROM`, `EMAIL_SUBJECT` | Optional message sender and subject; sender defaults to `SMTP_USER`. |
+
+## Manual credential rotation
+
+If an OpenCart report-email app password has been exposed, manually revoke it with the email provider and create a replacement before enabling email. Use the replacement as the local `SMTP_PASSWORD` environment variable and as the Harness `smtp_password` secret; never add it to this repository. If the exposed credential was reused elsewhere, replace it there too. Git-history cleanup can remove old copies from the repository, but it does not invalidate a credential and must be coordinated with anyone using the repository. Credential rotation is a one-time response to exposure (or your normal security-policy interval), not a step required for every test run.
+
+## Harness email setup
+
+The Harness pipeline enables report email and reads these project secrets using the matching identifiers below. Create each as a Harness text secret in the `Opencart` project before running the pipeline:
+
+| Harness secret identifier | Value |
+| --- | --- |
+| `smtp_user` | SMTP account username |
+| `smtp_password` | Newly rotated SMTP app password |
+| `email_to` | Report recipient address |
+
+The pipeline injects these only into the test step's environment. SMTP host, port, TLS, sender, and subject use the non-secret defaults in `qaConfig.properties` unless overridden with environment variables.
 
 Keep credentials and real customer data in environment variables, never in committed files. The duplicate-signup scenario creates a fresh test customer, logs out, then attempts to register again with that same generated email, so it does not need a pre-existing account or Harness secret.
 

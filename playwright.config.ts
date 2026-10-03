@@ -50,6 +50,7 @@ export default defineConfig({
         ['./src/main/com/opencart/helpers/extentreportmanager.ts'],
     ],
     use: {
+        headless: false,
         viewport: null,
         screenshot: 'on',
         video: 'on',

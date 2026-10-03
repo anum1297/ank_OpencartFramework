@@ -27,32 +27,22 @@ export const sendReportEmail = async (
 	reportPath: string,
 ): Promise<boolean> => {
 	const properties = new Utilities().readProperties();
-	const emailSend = (process.env.EMAIL_SEND ?? properties.emailSend ?? 'false').trim().toLowerCase() === 'true';
-	if (!emailSend) {
+	const emailSendSetting = (process.env.EMAIL_SEND ?? properties.emailSend ?? 'false').trim().toLowerCase();
+	if (emailSendSetting !== 'true' && emailSendSetting !== 'false') {
+		throw new Error('EMAIL_SEND must be either true or false.');
+	}
+	if (emailSendSetting === 'false') {
 		console.info('Report email disabled. Set EMAIL_SEND=true to enable it.');
 		return false;
 	}
 
-	const SMTP_USER = process.env.SMTP_USER || properties.SMTP_USER || properties.mailFrom;
-	let SMTP_PASSWORD = process.env.SMTP_PASSWORD;
-	const encryptedPassword = properties.SMTP_PASSWORD;
-	if (!SMTP_PASSWORD && encryptedPassword) {
-		if (!encryptedPassword.startsWith('v1:')) {
-			throw new Error('SMTP_PASSWORD must be supplied as an environment variable. Only encrypted v1 values may be stored in qaConfig.properties.');
-		}
-
-		const decryptionKey = process.env.EMAIL_SECRET_KEY;
-		if (!decryptionKey) {
-			throw new Error('EMAIL_SECRET_KEY is required to decrypt SMTP_PASSWORD from qaConfig.properties.');
-		}
-
-		SMTP_PASSWORD = new Utilities().decrypt(encryptedPassword, decryptionKey);
-	}
-	const EMAIL_TO = process.env.EMAIL_TO || properties.EMAIL_TO || properties.mailTo;
+	const SMTP_USER = process.env.SMTP_USER?.trim();
+	const SMTP_PASSWORD = process.env.SMTP_PASSWORD;
+	const EMAIL_TO = process.env.EMAIL_TO?.trim();
 	if (!SMTP_USER || !SMTP_PASSWORD || !EMAIL_TO) {
 		const missing = [
 			!SMTP_USER && 'SMTP_USER',
-			!SMTP_PASSWORD && 'SMTP_PASSWORD environment variable',
+			!SMTP_PASSWORD && 'SMTP_PASSWORD',
 			!EMAIL_TO && 'EMAIL_TO',
 		].filter(Boolean);
 		throw new Error(`Report email is enabled, but these settings are missing: ${missing.join(', ')}.`);
@@ -63,6 +53,11 @@ export const sendReportEmail = async (
 	if (!Number.isInteger(port) || port < 1 || port > 65535) {
 		throw new Error('SMTP_PORT must be a valid port number.');
 	}
+	const secureSetting = (process.env.SMTP_SECURE ?? properties.SMTP_SECURE)?.trim().toLowerCase();
+	if (secureSetting !== undefined && secureSetting !== 'true' && secureSetting !== 'false') {
+		throw new Error('SMTP_SECURE must be either true or false.');
+	}
+	const secure = secureSetting === undefined ? port === 465 : secureSetting === 'true';
 
 	const counts = {
 		total: tests.length,
@@ -79,7 +74,7 @@ export const sendReportEmail = async (
 	const transporter = nodemailer.createTransport({
 		host,
 		port,
-		secure: (process.env.SMTP_SECURE || properties.SMTP_SECURE)?.toLowerCase() === 'true' || port === 465,
+		secure,
 		auth: { user: SMTP_USER, pass: SMTP_PASSWORD },
 	});
 
@@ -101,7 +96,7 @@ export const sendReportEmail = async (
 		<p>The full execution report is attached.</p>`;
 
 	await transporter.sendMail({
-		from: process.env.EMAIL_FROM || properties.EMAIL_FROM || properties.mailFrom || SMTP_USER,
+		from: process.env.EMAIL_FROM || properties.EMAIL_FROM || SMTP_USER,
 		to: EMAIL_TO,
 		subject: process.env.EMAIL_SUBJECT || properties.EMAIL_SUBJECT || 'OpenCart Automation - Test Execution Summary',
 		html,
