@@ -12,6 +12,11 @@ const browserOptions = {
 const browserConfig = process.env.BROWSER?.trim().toLowerCase()
     || new Utilities().getProperty('browser')?.trim().toLowerCase()
     || 'chromium';
+const headlessSetting = process.env.PW_HEADLESS?.trim().toLowerCase();
+if (headlessSetting && headlessSetting !== 'true' && headlessSetting !== 'false') {
+    throw new Error('PW_HEADLESS must be either true or false.');
+}
+const headless = headlessSetting === 'true';
 const configuredBrowsers = browserConfig === 'all'
     ? ['chrome', 'firefox', 'edge']
     : browserConfig.split(',').map((browser) => browser.trim());
@@ -50,7 +55,7 @@ export default defineConfig({
         ['./src/main/com/opencart/helpers/extentreportmanager.ts'],
     ],
     use: {
-        headless: false,
+        headless,
         viewport: null,
         screenshot: 'on',
         video: 'on',

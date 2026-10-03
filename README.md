@@ -38,7 +38,7 @@ npx playwright test --list
 
 ## Test configuration
 
-The default site URL, product, and non-secret SMTP settings are in `src/main/com/opencart/config/qaConfig.properties`. Email is disabled by default (`emailSend=false`). To enable local report emails, provide credentials through environment variables:
+The default site URL, product, and non-secret SMTP settings are in `src/main/com/opencart/config/qaConfig.properties`. Email is disabled unless `EMAIL_SEND=true` is set. To enable local report emails, provide credentials through environment variables:
 
 ```sh
 export EMAIL_SEND=true
@@ -58,6 +58,7 @@ The message is sent after the custom Extent-style report is generated and includ
 | `SMTP_USER`, `SMTP_PASSWORD`, `EMAIL_TO` | SMTP account username, app password, and report recipient; required when enabled. |
 | `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE` | Optional SMTP host, port, and TLS setting; default values are in `qaConfig.properties`. |
 | `EMAIL_FROM`, `EMAIL_SUBJECT` | Optional message sender and subject; sender defaults to `SMTP_USER`. |
+| `PW_HEADLESS` | Set to `true` for headless execution; defaults to headed locally. Harness sets this automatically. |
 
 ## Manual credential rotation
 

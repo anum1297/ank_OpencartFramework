@@ -21,13 +21,14 @@ pipeline:
                     shell: Bash
                     envVariables:
                       EMAIL_SEND: "true"
+                      PW_HEADLESS: "true"
                       SMTP_USER: <+secrets.getValue("smtp_user")>
                       SMTP_PASSWORD: <+secrets.getValue("smtp_password")>
                       EMAIL_TO: <+secrets.getValue("email_to")>
                     command: |-
                       npm ci
                       npx bddgen test
-                      BROWSER=chromium xvfb-run -a npx playwright test --project=chromium
+                      BROWSER=chromium npx playwright test --project=chromium
                     reports:
                       type: JUnit
                       spec:
